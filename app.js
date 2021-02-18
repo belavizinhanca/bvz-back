@@ -82,6 +82,9 @@ app.post('/moradores', async (req, res) => {
             nome: req.body.nome,
             perfil: req.body.perfil
         })
+        novoMorador.save()
+    
+        res.json({message: "Cadastrado com sucesso.", morador: novoMorador})
 })
 
 app.put('/moradores/:id', async (req, res) => {
