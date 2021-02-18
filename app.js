@@ -82,7 +82,8 @@ app.get('/moradores', async (req, res) => {
 app.post('/moradores', async (req, res) => {
         const novoMorador = new Morador({
             nome: req.body.nome,
-            perfil: req.body.perfil
+            perfil: req.body.perfil,
+            demanda: req.body.demanda
         })
         novoMorador.save()
     
@@ -95,6 +96,7 @@ app.put('/moradores/:id', async (req, res) => {
 
     morador.nome = req.body.nome,
     morador.perfil = req.body.perfil
+    morador.demanda = req.body.demanda
 
     morador.save()
 

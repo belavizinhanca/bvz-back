@@ -9,6 +9,10 @@ const Morador = new Schema({
     perfil:{
         type: String,
         required: true
+    },
+    demanda: {
+        type: String,
+        required: true
     }
 })
 
