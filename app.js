@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const cors = require('cors')
 
 require('./src/models/Mediador')
 const Mediador = mongoose.model('mediadores')
@@ -11,6 +12,7 @@ const Morador = mongoose.model('moradores')
 
 require('./src/db/connect')
 
+app.use(cors())
 app.use(express.json())
 
 app.get('/mediadores', async (req, res) => {
