@@ -67,4 +67,4 @@ app.delete('/mediadores/:id', async (req, res) => {
     res.json({message: "Cadastro deletado com sucesso.", mediador: mediador})
 })
 
-app.listen(3333)
+app.listen(process.env.PORT || 3000)
