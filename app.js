@@ -6,6 +6,9 @@ const bcrypt = require('bcryptjs')
 require('./src/models/Mediador')
 const Mediador = mongoose.model('mediadores')
 
+require('./src/models/Morador')
+const Morador = mongoose.model('moradores')
+
 require('./src/db/connect')
 
 app.use(express.json())
@@ -64,7 +67,40 @@ app.delete('/mediadores/:id', async (req, res) => {
     const {id} = req.params
     const mediador = await Mediador.findOneAndDelete({_id: id})
 
-    res.json({message: "Cadastro deletado com sucesso.", mediador: mediador})
+    res.json({message: "Cadastro deletado com sucesso.", mediador: Mediador})
+})
+
+app.get('/moradores', async (req, res) => {
+    const moradoresResponse = await Morador.find()
+    const moradoresJson = await moradoresResponse
+
+    return res.json(moradoresJson)
+})
+
+app.post('/moradores', async (req, res) => {
+        const novoMorador = new Morador({
+            nome: req.body.nome,
+            perfil: req.body.perfil
+        })
+})
+
+app.put('/moradores/:id', async (req, res) => {
+    const { id } = req.params
+    const morador = await Morador.findOne({_id: id })
+
+    morador.nome = req.body.nome,
+    morador.perfil = req.body.perfil
+
+    morador.save()
+
+    res.json({message: "Cadastro alterado com sucesso.", morador: Morador})
+})
+
+app.delete('/moradores/:id', async (req, res) => {
+    const {id} = req.params
+    const morador = await Morador.findOneAndDelete({_id: id})
+
+    res.json({message: "Cadastro deletado com sucesso.", morador: Morador})
 })
 
 app.listen(process.env.PORT || 3000)

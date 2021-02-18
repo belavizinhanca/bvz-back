@@ -1,0 +1,39 @@
+mongodb+srv://BVZ:iCHkmDlW31WMycKr@teste1.rwmza.mongodb.net/bdbvz?retryWrites=true&w=majority
+
+app.use(multer({ dest: './fotos',
+rename: function (fieldname, filename) {
+    return filename;
+}}))
+
+app.get('/moradores', async (req, res) => {
+    const moradoresResponse = await Morador.find()
+    const moradoresJson = await moradoresResponse
+
+    return res.json(moradoresJson)
+})
+
+app.post('/moradores', async (req, res) => {
+        const novoMorador = new Morador({
+            nome: req.body.nome,
+            perfil: req.body.perfil
+        })
+})
+
+app.put('/moradores/:id', async (req, res) => {
+    const { id } = req.params
+    const morador = await Morador.findOne({_id: id })
+
+    morador.nome = req.body.nome,
+    morador.perfil = req.body.perfil
+
+    morador.save()
+
+    res.json({message: "Cadastro alterado com sucesso.", morador: Morador})
+})
+
+app.delete('/moradores/:id', async (req, res) => {
+    const {id} = req.params
+    const morador = await Morador.findOneAndDelete({_id: id})
+
+    res.json({message: "Cadastro deletado com sucesso.", morador: Morador})
+})

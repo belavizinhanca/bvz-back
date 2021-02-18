@@ -1,1 +1,0 @@
-mongodb+srv://BVZ:iCHkmDlW31WMycKr@teste1.rwmza.mongodb.net/bdbvz?retryWrites=true&w=majority
