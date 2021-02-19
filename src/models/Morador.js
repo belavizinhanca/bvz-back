@@ -12,7 +12,7 @@ const Morador = new Schema({
     },
     demanda: {
         type: String,
-        required: true
+        required: false
     }
 })
 

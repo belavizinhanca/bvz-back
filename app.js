@@ -50,14 +50,23 @@ app.post('/mediadores', async (req, res) => {
     }
 })
 
-app.put('/mediadores/:id', async (req, res) => {
+app.put('/mediadores/contato/:id', async (req, res) => {
     const { id } = req.params
     const mediador = await Mediador.findOne({_id: id })
 
-    mediador.nome = req.body.nome,
-    mediador.email = req.body.email,
     mediador.contato = req.body.contato,
-    mediador.endereco = req.body.endereco,
+    mediador.endereco = req.body.endereco
+
+    mediador.save()
+
+    res.json({message: "Cadastro alterado com sucesso.", mediador: Mediador})
+})
+
+app.put('/mediadores/login/:id', async (req, res) => {
+    const { id } = req.params
+    const mediador = await Mediador.findOne({_id: id })
+
+    mediador.email = req.body.email,
     mediador.senha = req.body.senha
 
     mediador.save()
@@ -95,7 +104,7 @@ app.put('/moradores/:id', async (req, res) => {
     const morador = await Morador.findOne({_id: id })
 
     morador.nome = req.body.nome,
-    morador.perfil = req.body.perfil
+    morador.perfil = req.body.perfil,
     morador.demanda = req.body.demanda
 
     morador.save()
