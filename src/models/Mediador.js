@@ -25,3 +25,4 @@ const Mediador = new Schema({
 })
 
 mongoose.model('mediadores', Mediador)
+module.exports = Mediador
