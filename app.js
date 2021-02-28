@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
 const cors = require('cors')
 const AuthRoute = require('./src/routes/auth')
 const authenticate = require('./src/middleware/authenticate')
@@ -16,14 +15,14 @@ require('./src/db/connect')
 
 app.use(cors())
 app.use(express.json())
-app.use('/mediadores', AuthRoute)
+app.use('/api', AuthRoute)
 
-app.get('/mediadores', async (req, res) => {
-    const mediadoresResponse = await Mediador.find()
-    const mediadoresJson = await mediadoresResponse
+// app.get('/mediadores', async (req, res) => {
+//     const mediadoresResponse = await Mediador.find()
+//     const mediadoresJson = await mediadoresResponse
 
-    return res.json(mediadoresJson)
-})
+//     return res.json(mediadoresJson)
+// })
 
 app.put('/mediadores/contato/:id', async (req, res) => {
     const { id } = req.params
@@ -94,4 +93,4 @@ app.delete('/moradores/:id', async (req, res) => {
     res.json({message: "Cadastro deletado com sucesso.", morador: Morador})
 })
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 4000)
