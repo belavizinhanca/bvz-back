@@ -63,15 +63,12 @@ const login = async (req, res, next) => {
                 return res.json({message: "Senha incorreta!"})
             }else {
                 let token = jwt.sign({nome: result.nome}, config.JWT_KEY, {expiresIn: '1m'})
-                var userAuthenticated = res.json({
+                return res.json({
                     success: true,
                     nome:result.nome,
                     message: 'Login efetuado com sucesso!',
                     token
                 })
-                
-                return userAuthenticated;
-                
                 // return res.json({message: "Senha Correta! "})
             }
         }
@@ -90,14 +87,10 @@ const verifyToken = async (req, res, next) => {
 
         if(!err){
             res.json({success: true, decode})
-            console.log(decode);
         }else {
-            console.log(err);
             res.json({
                 success: false
             })
-       
-
         }
     })
 }
