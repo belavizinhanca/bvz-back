@@ -81,10 +81,7 @@ const login = async (req, res, next) => {
 const verifyToken = async (req, res, next) => {
 
     var token = req.headers.auth.split(' ')[1]
-
-
-    
-    var token = req.headers['auth'].split(' ')[1];
+    console.log(token);
     
     jwt.verify(token, config.JWT_KEY, (err, decode) => {
 
