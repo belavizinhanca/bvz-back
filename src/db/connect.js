@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
+const config = require('../config')
 
 function connect() {
-    mongoose.connect('mongodb+srv://BVZ:iCHkmDlW31WMycKr@bvz1.rwmza.mongodb.net/bdbvz?retryWrites=true&w=majority', {
+    mongoose.connect(config.URL_MONGO, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
