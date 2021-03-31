@@ -92,6 +92,7 @@ const verifyToken = async (req, res, next) => {
             res.json({success: true, decode})
             console.log(decode);
         }else {
+            console.log(err);
             res.json({
                 success: false
             })
